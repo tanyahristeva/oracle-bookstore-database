@@ -1,4 +1,4 @@
---select процедура за търсене на книги по автор
+--select procedure for searching by author
 CREATE OR REPLACE PROCEDURE search_books_by_author (v_AUTHOR VARCHAR2)
 IS
 CURSOR CUR_BOOKS
@@ -30,7 +30,7 @@ BEGIN
 END;
 /
 
---select процедура за търсене на книги по жанр
+--select procedure for searching by genre
 CREATE OR REPLACE PROCEDURE search_books_by_genre (v_genre VARCHAR2)
 IS
 CURSOR CUR_GENRE
@@ -57,7 +57,7 @@ CLOSE CUR_GENRE;
 END search_books_by_genre;
 /
 
---select процедура за търсене на книги по издателство
+--select procedure for searching by publisher
 CREATE OR REPLACE PROCEDURE search_books_by_publisher (v_publisher VARCHAR2) 
 IS
 CURSOR CUR_PUBLISHER 
@@ -82,7 +82,7 @@ CLOSE CUR_PUBLISHER;
 END search_books_by_publisher;
 /
 
---select процедура за приходи от продажби на служител за период
+--select procedure for report for employee
 CREATE OR REPLACE PROCEDURE REPORT_EMPLOYEE_REVENUE (v_START_DATE DATE, v_END_DATE DATE) 
 IS
 CURSOR CUR_EMPLOYEE
@@ -109,7 +109,7 @@ CLOSE CUR_EMPLOYEE;
 END REPORT_EMPLOYEE_REVENUE;
 /
 
---select процедура за брой продадени книги подредени по количество 
+--select procedure for books sold
 CREATE OR REPLACE PROCEDURE REPORT_BOOK_SALES
 IS
 CURSOR CUR_SALES
@@ -141,7 +141,7 @@ CLOSE CUR_SALES;
 END REPORT_BOOK_SALES;
 /
 
---select процедура за топ 3 автори с най-много продадени книги
+--select procedure for authors with most sold books
 CREATE OR REPLACE PROCEDURE REPORT_TOP_AUTHORS(v_LIMIT NUMBER)
 IS
 CURSOR CUR_TOP_AUTHOR
@@ -174,7 +174,7 @@ CLOSE CUR_TOP_AUTHOR;
 END REPORT_TOP_AUTHORS;
 /
 
---select процедура за последните 5 поръчки, подредени по дата
+--select procedure for last 5 orders by date
 CREATE OR REPLACE PROCEDURE REPORT_LATEST_ORDERS(v_LIMIT NUMBER)
 IS
 CURSOR CUR_LATEST_ORDER
@@ -206,7 +206,7 @@ CLOSE CUR_LATEST_ORDER;
 END REPORT_LATEST_ORDERS;
 /
 
---процедура за добавяне на нова книга insert
+--insert a book procedure
 CREATE OR REPLACE PROCEDURE INSERT_BOOK(
 v_BOOK_ID BOOK.BOOK_ID%TYPE,
 v_TITLE BOOK.TITLE%TYPE,
@@ -229,7 +229,7 @@ INSERT_BOOK(20, 'Ivy',2020,1,1,13.13);
 END;
 /
 
---процедура за редактиране на книга update 
+--update a book procedure
 CREATE OR REPLACE PROCEDURE UPDATE_BOOK_PRICE 
 (
 v_BOOK_ID BOOK.BOOK_ID%TYPE, 
@@ -243,7 +243,7 @@ WHERE BOOK_ID = v_BOOK_ID;
 END UPDATE_BOOK_PRICE; 
 /
 
---процедура за изтриване на книга
+--delete a book procedure
 CREATE OR REPLACE PROCEDURE DELETE_BOOK(
 v_BOOK_ID BOOK.BOOK_ID%TYPE
 )
@@ -254,12 +254,8 @@ WHERE BOOK_ID = v_BOOK_ID;
 END DELETE_BOOK; 
 /
 
-BEGIN 
-DELETE_BOOK(20);
-END;
-/
 
---процедура за добавяне на нов клиент insert
+--insert a client procedure
 CREATE OR REPLACE PROCEDURE INSERT_CUSTOMER(
 v_CUSTOMER_ID CUSTOMER.CUSTOMER_ID%TYPE,
 v_NAME CUSTOMER.NAME%TYPE,
@@ -275,7 +271,7 @@ DBMS_OUTPUT.PUT_LINE('Success: Customer "' || v_NAME || '" added.');
 END INSERT_CUSTOMER;
 /
 
---процедура за добавяне на нов служител insert
+--insert an employee procedure
 CREATE OR REPLACE PROCEDURE INSERT_EMPLOYEE(
 v_EMPLOYEE_ID EMPLOYEE.EMPLOYEE_ID%TYPE,
 v_NAME EMPLOYEE.NAME%TYPE,
@@ -290,7 +286,7 @@ DBMS_OUTPUT.PUT_LINE('Success: Employee "' || v_NAME || '" added.');
 END INSERT_EMPLOYEE;
 /
 
---процедура за редакция на служител update
+--update a client procedure
 CREATE OR REPLACE PROCEDURE UPDATE_EMPLOYEE(
 v_EMPLOYEE_ID EMPLOYEE.EMPLOYEE_ID%TYPE,
 v_NEW_NAME EMPLOYEE.NAME%TYPE,
@@ -307,7 +303,7 @@ WHERE EMPLOYEE_ID = v_EMPLOYEE_ID;
 END UPDATE_EMPLOYEE;
 /
 
---процедура за изтриване на служител
+--delete an employee procedure
 CREATE OR REPLACE PROCEDURE DELETE_EMPLOYEE(
 v_EMPLOYEE_ID EMPLOYEE.EMPLOYEE_ID%TYPE
 )
@@ -318,7 +314,7 @@ WHERE EMPLOYEE_ID = v_EMPLOYEE_ID;
 END DELETE_EMPLOYEE;
 /
 
---процедура за добавяне на работна позиция
+--insert a work position procedure
 CREATE OR REPLACE PROCEDURE INSERT_POSITION(
 v_POSITION_ID WORK_POSITIONS.POSITION_ID%TYPE,
 v_NAME WORK_POSITIONS.NAME%TYPE
@@ -331,7 +327,7 @@ DBMS_OUTPUT.PUT_LINE('Success: Position "' || v_NAME || '" added.');
 END INSERT_POSITION;
 /
 
---процедура за редакция на работна позиция update
+--update a work position procedure
 CREATE OR REPLACE PROCEDURE UPDATE_POSITION(
 v_POSITION_ID WORK_POSITIONS.POSITION_ID%TYPE,
 v_NEW_NAME WORK_POSITIONS.NAME%TYPE
@@ -345,7 +341,8 @@ END UPDATE_POSITION;
 /
 
 
---процедура за изтриване на позиция delete
+
+--delete a work position procedure
 CREATE OR REPLACE PROCEDURE DELETE_POSITION(
 v_POSITION_ID WORK_POSITIONS.POSITION_ID%TYPE
 )
@@ -356,7 +353,7 @@ WHERE POSITION_ID = v_POSITION_ID;
 END DELETE_POSITION;
 /
 
---процедура за редактиране на клиент update
+--update a customer procedure
 CREATE OR REPLACE PROCEDURE UPDATE_CUSTOMER(
 v_CUSTOMER_ID CUSTOMER.CUSTOMER_ID%TYPE,
 v_NEW_ADDRESS CUSTOMER.ADDRESS%TYPE,
@@ -370,7 +367,8 @@ WHERE CUSTOMER_ID = v_CUSTOMER_ID;
 END UPDATE_CUSTOMER;
 /
 
---процедура за изртиване на клиент delete
+
+--delete a customer procedure
 CREATE OR REPLACE PROCEDURE DELETE_CUSTOMER(
 v_CUSTOMER_ID CUSTOMER.CUSTOMER_ID%TYPE
 )
